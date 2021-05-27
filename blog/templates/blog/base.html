@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/register.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     {% if title %}
         <title>Django Blog - {{ title }}</title>
@@ -16,9 +22,9 @@
 </head>
 <body>
     <header class="container">
-        <h1 class="welcome_text">Welcome to My Aquarium Blog</h1>
+        <h1 class="welcome_text">My New Aquarium Blog</h1>
     </header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light my-3">
+    <nav class="navbar navbar-expand-md navbar-light bg-light my-3 ps-3">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'blog-home' %}">My Aquarium</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,15 +32,24 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="{% url 'blog-home' %}">Home</a>
-              <a class="nav-link" href="{% url 'blog-about' %}">About</a>
-              <a class="nav-link" href="{% url 'register' %}">Register</a>
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link {% if page_name == 'blog-home' %}active{% endif %}" aria-current="page" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-link {% if page_name == 'blog' %}active{% endif %}" href="{% url 'blog' %}">Blog</a>
+              <div class="navbar-nav .align-content-end">
+                {% if user.is_authenticated %}
+                    <a class="nav-link {% if page_name == 'logout' %}active{% endif %}" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a class="nav-link {% if page_name == 'register' %}active{% endif %}" href="{% url 'register' %}">Join Us</a>
+                    <a class="nav-link {% if page_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Login</a>
+                {% endif %}
+              
+
+               </div>
             </div>
           </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="background-scroll"></div>
+    <div>
         {% if messages %}
             {% for message in messages %}
              <div class='alert alert-{{ message.tags }}'>
@@ -46,5 +61,6 @@
         
         {% endblock %}
     </div>
+    <div class="background-scroll"></div>
 </body>
 </html>

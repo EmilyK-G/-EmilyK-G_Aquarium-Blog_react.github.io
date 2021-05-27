@@ -1,25 +1,48 @@
 from django.shortcuts import render
+from .models import Post
+from django.views.generic.edit import CreateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
-posts = [
-    {
-        'author': 'Susan M',
-        'title': 'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'August 28, 2018',
-    },
-    {
-        'author': 'John F. Kenedy',
-        'title': 'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted': 'August 29, 2018',
-    }
-]
 
 def home(request):
     context = {
-        'posts': posts
+        'page_name': 'blog-home'
     }
     return render(request, 'blog/home.html', context)
 
-def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+
+
+# class PostCreateView(CreateView):
+#     model = Post
+#     fields = ['title', 'comment', 'age']
+
+@login_required
+def blog(request):
+    post = Post.objects.all()
+    if request.method == "POST":
+        context = {
+            'post': post,
+            'show_form': False,
+            'message': 'You added a new post!',
+            'page_name': 'blog'
+        }
+        try:
+            new_post = Post.objects.create(
+                author = User.objects.get('username'),
+                age = User.objects.get('age'),
+                title = request.POST.get('title'),
+                comment = request.POST.get('comment'),
+                date_posted = datetime.date.today()
+            )
+            new_post.save()
+        except:
+            context['message'] = 'There was an error adding your comment. Try again'
+        return render(request, 'blog/blog.html', context)    
+    else:
+        context = {
+            'post': post,
+            'show_form': True,
+            'page_name': 'blog',
+        }
+    return render(request, 'blog/blog.html', context)

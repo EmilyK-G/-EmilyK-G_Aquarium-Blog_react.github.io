@@ -1,0 +1,57 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% if message %}
+    <div class="container text-center">
+        <h2>{{ message }}</h2>
+    </div>
+    {% endif %}
+
+    {% if show_form %}
+    
+    <div class="div_scroll">
+        <div class="container p-4">
+            <p class="welcoming_text">Hello {{ user.username }}! Welcome to my blog.</p>
+        </div>
+        <div class="container p-4">
+            <h4 class="first_text p-4">This is Rey, my fish. Delight yourself with his magestic swimming.</h4>
+            <video class=" d-flex justify-content-center" width="700" controls muted>
+                <source src="../../static/blog/video/my_fish_swimming.MP4" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+        </div>
+    </div>
+
+    <div class="div_scroll">
+        <form action="{% url 'blog' %}" method="POST">
+            {% csrf_token %}
+            <div class="container">
+                <div class="row m-4">
+                    <label for="title">
+                        Your title:
+                    </label>
+                    <input id="title" type="text" name="title" placeholder="Title" required maxlength="150" autofocus class="textinput textInput form-control" >
+                </div>
+                <div class="row m-4">
+                    <label for="comment">
+                        Your Comment: 
+                    </label>
+                    <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Comment" required autofocus class="textinput textInput form-control"></textarea>
+                </div>
+                <div class="row m-4">
+                    <small>
+                        Posted: <em>Today</em>, by <em>{{ user.username }}</em>
+                    </small>
+                </div>
+                <button class="btn btn-outline-info m-4" type="submit">Post</button>
+            </div>
+
+        </form>
+    </div>
+    
+    {% endif %}
+
+
+    
+
+{% endblock content %}
+    <!-- <a href="{% url 'post-detail' %}" class="new_post_text"><h4>Write a new post!</h4></a> -->

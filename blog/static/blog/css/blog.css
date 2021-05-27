@@ -1,0 +1,18 @@
+.welcoming_text{
+    color: rgb(79, 79, 129);
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 3em;
+}
+.login_link{
+    text-decoration: none;
+}
+.list_style{
+    list-style-type: none;
+}
+.new_post_text{
+    text-decoration: none;
+}
+.first_text{
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 2em;
+}
