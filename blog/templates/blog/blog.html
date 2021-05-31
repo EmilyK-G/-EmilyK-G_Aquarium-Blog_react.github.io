@@ -1,57 +1,85 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    {% if message %}
-    <div class="container text-center">
-        <h2>{{ message }}</h2>
-    </div>
-    {% endif %}
-
-    {% if show_form %}
     
     <div class="div_scroll">
         <div class="container p-4">
             <p class="welcoming_text">Hello {{ user.username }}! Welcome to my blog.</p>
+            <p class="blog_text"> How is it like to have a fish?
+                From the first day he came home until today I keep learning about fishkeeping.
+                I hope my experience help new owners to understand the chanlenges and rewards of taking care of these beautiful creatures.
+            </p>
         </div>
         <div class="container p-4">
             <h4 class="first_text p-4">This is Rey, my fish. Delight yourself with his magestic swimming.</h4>
-            <video class=" d-flex justify-content-center" width="700" controls muted>
-                <source src="../../static/blog/video/my_fish_swimming.MP4" type="video/mp4">
-                Your browser does not support HTML video.
-            </video>
+            <div class=" d-flex justify-content-center">
+                <video width="900" class="video_blog" controls muted>
+                    <source src="../../static/blog/video/my_fish_swimming.MP4" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+            </div>
+        </div>
+        <div class="container p-4">
+            <p class="blog_text">When I took Rey home, I had no idea of the commitment I was doing.
+            I was one of those who thought bettas live just about a month or so, and don't require a lot of space. 
+            What I shock I got when I learned the truth about their long life span and their true habbitad!
+            Now he has everything he needs to live healthy and happy for a long time.</p>
         </div>
     </div>
+    
 
+    <div class="background-scroll-middle"></div>
+
+    {% if message %}
+    <div class="container text-center">
+        <h2 class="message_text">{{ message }}</h2>
+    </div>
+    {% endif %}
+
+    {% if show_form %}
+    <div class="contaier">
+        <h3 class="add_post_text p-3">Add a Post</h3>
+    </div>
     <div class="div_scroll">
-        <form action="{% url 'blog' %}" method="POST">
-            {% csrf_token %}
-            <div class="container">
-                <div class="row m-4">
-                    <label for="title">
-                        Your title:
-                    </label>
-                    <input id="title" type="text" name="title" placeholder="Title" required maxlength="150" autofocus class="textinput textInput form-control" >
+        <div class="container">
+            <form action="{% url 'blog' %}" method="POST">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="row m-4">
+                        <label for="title">
+                            Your title:
+                        </label>
+                        <input id="title" type="text" name="title" placeholder="Title" required maxlength="150" autofocus class="textinput textInput form-control" >
+                    </div>
+                    <div class="row m-4">
+                        <label for="comment">
+                            Your Comment: 
+                        </label>
+                        <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Comment" required autofocus class="textinput textInput form-control"></textarea>
+                    </div>
+                    <div class="row m-4">
+                        <small>
+                            Posted: <em>Today</em>, by <em>{{ user.username }}</em>
+                        </small>
+                    </div>
+                    <button class="btn btn-outline-info m-4" type="submit">Post</button>
                 </div>
-                <div class="row m-4">
-                    <label for="comment">
-                        Your Comment: 
-                    </label>
-                    <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Comment" required autofocus class="textinput textInput form-control"></textarea>
-                </div>
-                <div class="row m-4">
-                    <small>
-                        Posted: <em>Today</em>, by <em>{{ user.username }}</em>
-                    </small>
-                </div>
-                <button class="btn btn-outline-info m-4" type="submit">Post</button>
-            </div>
-
-        </form>
+    
+            </form>
+        </div>
     </div>
     
     {% endif %}
-
+    <div class="container">
+        <ul class="list_style">
+            {% for post in post %}
+                <li class="container py-4 list_container">
+                    <h5>{{ post.title }}</h5>
+                    <p>{{ post.comment }}</p>
+                    <p><small><em>Posted by {{ user.username }} -{{ post.age }} years old, on {{ post.date_posted }}</em></small></p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
     
-
 {% endblock content %}
-    <!-- <a href="{% url 'post-detail' %}" class="new_post_text"><h4>Write a new post!</h4></a> -->

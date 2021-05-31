@@ -3,6 +3,7 @@ from .models import Post
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import datetime
 
 
 def home(request):
@@ -11,11 +12,6 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
-
-
-# class PostCreateView(CreateView):
-#     model = Post
-#     fields = ['title', 'comment', 'age']
 
 @login_required
 def blog(request):
@@ -29,8 +25,8 @@ def blog(request):
         }
         try:
             new_post = Post.objects.create(
-                author = User.objects.get('username'),
-                age = User.objects.get('age'),
+                author =  request.user.username,
+                age = 20,
                 title = request.POST.get('title'),
                 comment = request.POST.get('comment'),
                 date_posted = datetime.date.today()

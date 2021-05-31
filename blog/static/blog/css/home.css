@@ -24,6 +24,8 @@
   
   .text-title {
     font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 2em;
+    color: rgb(65, 65, 65);
   }
 
   .betta-img {
@@ -33,9 +35,15 @@
   .second-text{
     font-family: 'Fira Sans Condensed', sans-serif;
   }
-/* 
-  @media only screen and (max-device-width: 1366px) {
-    .parallax {
-      background-attachment: scroll;
+
+  @media (min-width: 768px) {
+    .text-title {
+      font-size: 1em;
     }
-  } */
+    .betta-img {
+      display: none;
+    }
+    .second-text{
+      font-size: smaller;
+    }
+  }
