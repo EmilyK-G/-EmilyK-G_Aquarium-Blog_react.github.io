@@ -18,7 +18,7 @@
     text-align: center;
 }
 div.background-scroll-middle {
-    background-image: url("../img/aquarium.jpg");
+    background-image: url('../img/aquarium.jpg');
     height: 100%;
     min-height: 200px;
     background-attachment: fixed;
