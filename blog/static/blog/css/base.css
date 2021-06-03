@@ -16,7 +16,7 @@ div.background-scroll {
     background-size: cover;
   }
 
-  @media (min-width: 576px){
+  @media (max-width: 576px){
     div.background-scroll{
       display: none;
     }
