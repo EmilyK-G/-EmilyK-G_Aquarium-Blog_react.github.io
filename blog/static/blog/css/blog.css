@@ -53,4 +53,7 @@ div.background-scroll-middle {
     div.background-scroll-middle{
       display: none;
     }
+    .welcoming_text{
+      font-size: 1em;
+    }
   }
