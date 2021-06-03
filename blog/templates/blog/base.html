@@ -21,26 +21,23 @@
         <title>Django Blog</title>
     {% endif %}
 </head>
-<body>
-    <header class="container">
-        <h1 class="welcome_text">My Aquarium Blog</h1>
-    </header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light my-3 ps-3">
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-md navbar-light ps-3 fixed-top-md nav-color">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'blog-home' %}">My Aquarium</a>
+          <a class="navbar-brand nav-text" href="{% url 'blog-home' %}">My Aquarium Blog</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <button type="button" class="btn btn-outline-light"><a class="nav-link {% if page_name == 'blog-home' %}active{% endif %}" aria-current="page" href="{% url 'blog-home' %}">Home</a></button>
-              <button type="button" class="btn btn-outline-light"><a class="nav-link {% if page_name == 'blog' %}active{% endif %}" href="{% url 'blog' %}">Blog</a></button>
+              <button type="button" class="btn"><a class="nav-text nav-link {% if page_name == 'blog-home' %}active{% endif %}" aria-current="page" href="{% url 'blog-home' %}">Home</a></button>
+              <button type="button" class="btn"><a class="nav-text nav-link {% if page_name == 'blog' %}active{% endif %}" href="{% url 'blog' %}">Blog</a></button>
               <div class="navbar-nav">
                 {% if user.is_authenticated %}
-                    <button type="button" class="btn btn-outline-light"><a class="nav-link {% if page_name == 'logout' %}active{% endif %}" href="{% url 'logout' %}">Logout</a></button>
+                    <button type="button" class="btn"><a class="nav-text nav-link {% if page_name == 'logout' %}active{% endif %}" href="{% url 'logout' %}">Logout</a></button>
                 {% else %}
-                    <button type="button" class="btn btn-outline-light"><a class="nav-link {% if page_name == 'register' %}active{% endif %}" href="{% url 'register' %}">Join Us</a></button>
-                    <button type="button" class="btn btn-outline-light"><a class="nav-link {% if page_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Login</a></button>
+                    <button type="button" class="btn"><a class="nav-text nav-link {% if page_name == 'register' %}active{% endif %}" href="{% url 'register' %}">Join Us</a></button>
+                    <button type="button" class="btn"><a class="nav-text nav-link {% if page_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Login</a></button>
                 {% endif %}
               
 
@@ -63,5 +60,10 @@
         {% endblock %}
     </div>
     <div class="background-scroll"></div>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <span class="text-muted"><em>Proyect 4 -Created by: Emily K. Garcia</em></span>
+        </div>
+    </footer>
 </body>
 </html>

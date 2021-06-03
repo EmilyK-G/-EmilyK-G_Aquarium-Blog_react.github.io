@@ -1,8 +1,8 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-   <div class="content-section container">
-        <p class="welcoming_text">Welcome, new user. Please Log In.
+    <div class="content-section container py-4">
+        <p class="welcoming_text login_text">Welcome, new user. Please Log In.</p>
         <form method="POST">
             {% csrf_token %}
             <fieldset class='form-group'>
@@ -20,5 +20,5 @@
             </small>
         </div>
 
-   </div>
+    </div>
 {% endblock %}

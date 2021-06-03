@@ -26,6 +26,7 @@
     font-family: 'Fira Sans Condensed', sans-serif;
     font-size: 2em;
     color: rgb(65, 65, 65);
+    text-align: center;
   }
 
   .betta-img {
@@ -45,5 +46,13 @@
     }
     .second-text{
       font-size: smaller;
+    }
+  }
+  @media (max-width: 576px){
+    .text-title {
+      font-size: 0.9em;
+    }
+    .second-text{
+      font-size: 0.8em;
     }
   }

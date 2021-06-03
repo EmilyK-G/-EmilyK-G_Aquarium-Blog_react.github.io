@@ -1,6 +1,7 @@
-
-.welcome_text {
-    color: rgb(79, 79, 129);
+.nav-color {
+  background-color: #8b9cad;
+}
+.nav-text{
     font-family: 'Fira Sans Condensed', sans-serif;
 }
 .form_field_username {
@@ -15,7 +16,6 @@ div.background-scroll {
     background-repeat: no-repeat;
     background-size: cover;
   }
-
   @media (max-width: 576px){
     div.background-scroll{
       display: none;

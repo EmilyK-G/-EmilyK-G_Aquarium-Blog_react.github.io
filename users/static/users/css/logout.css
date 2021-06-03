@@ -6,3 +6,11 @@
     font-family: 'Fira Sans Condensed', sans-serif;
     text-align: center;
 }
+@media (max-width: 768px) {
+    .logout_text{
+        font-size: smaller;
+    }
+    .login_text{
+        font-size: smaller;
+    }
+  }
